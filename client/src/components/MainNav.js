@@ -51,6 +51,9 @@ function MainNav() {
                                     <NavDropdown.Item href="/cart">
                                         Cart
                                     </NavDropdown.Item>
+                                    <NavDropdown.Item href="/registration">
+                                        Registration
+                                    </NavDropdown.Item>
                                     <NavDropdown.Divider />
 
                                     <NavDropdown.Item href="/Logout">

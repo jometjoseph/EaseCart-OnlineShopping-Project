@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../pages/Cart.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import {  Trash3Fill, TrashFill } from 'react-bootstrap-icons';
+import {   TrashFill } from 'react-bootstrap-icons';
 import { setSecNavbar } from '../utils/tokenHelper';
 
 function Cart() {
@@ -107,8 +107,8 @@ function Cart() {
                                 <div className="d-flex flex-row align-items-center">
                                   <div className='' style={{ width: "50px" }}>
                                     {/* <h5 className="fw-normal mb-0">2</h5> */}
-                                    <div class="form-outline" style={{ width: "3rem" }}>
-                                      <input min="1" max="20" type="number" id="typeNumber" placeholder='1' class="form-control" />
+                                    <div className="form-outline" style={{ width: "3rem" }}>
+                                      <input min="1" max="20" type="number" id="typeNumber" placeholder='1' className="form-control" />
                                     </div>
                                   </div>
                                   <div style={{ width: "80px" }}>

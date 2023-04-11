@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { getSecNavbar, getToken, setSecNavbar, setToken } from '../utils/tokenHelper';
+import { Link, useNavigate } from 'react-router-dom';
+import { getToken, setSecNavbar, setToken } from '../utils/tokenHelper';
 import { ToastContainer } from 'react-bootstrap';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import login from '../images/login.jpg';
-import httpClient from '../utils/httpClient';
 import { toast } from 'react-toastify';
-import MainNav from '../components/MainNav';
 
 // const axios = require('axios');
 
@@ -99,6 +97,8 @@ function Login() {
                           <button className="btn btn-primary btn-md" type="submit">Login</button>
                         </div>
                       </form>
+                      <p class="text-center text-muted mt-5 mb-0">Doesn't have an account? <Link to={'/registration'}
+                    class="fw-bold text-body"><u>Register here</u></Link></p>
                     </div>
                   </div>
                   <div className="col-lg-6 d-flex align-items-center gradient-custom-2">

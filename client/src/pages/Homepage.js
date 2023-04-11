@@ -1,4 +1,4 @@
-import { Carousel } from "bootstrap";
+// import { Carousel } from "bootstrap";
 import MainNav from "../components/MainNav";
 import CarouselComponent from "../components/CarouselComponent";
 import React, { useEffect, useState } from "react";
@@ -50,9 +50,9 @@ function Homepage() {
       
       }
     return (
-        <div className="mt-2">
+        <>
             <MainNav/>
-            <Navbar/>
+            <div className="mt-5</div>">
             <CarouselComponent />
             <div className="container-fluid">
                 <MDBContainer fluid className="my-5 text-center">
@@ -111,7 +111,8 @@ function Homepage() {
                     <hr></hr>
                 </MDBContainer>
             </div>
-        </div>
+            </div> 
+        </>
     )
 }
 

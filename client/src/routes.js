@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import Cart from "./pages/Cart";
 import Logout from "./pages/Logout";
 import Product from "./pages/Product";
+import Registration from "./pages/Registration";
 
 const routes = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const routes = createBrowserRouter([
             {
                 path: "",
                 element: <Login/>
+            },
+            {
+                path: "registration",
+                element: <Registration/>
             },
             {
                 path: "home",
