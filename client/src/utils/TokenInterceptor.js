@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 // import notify from '../components/toast.Service';
-import httpClient from './httpClient'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
