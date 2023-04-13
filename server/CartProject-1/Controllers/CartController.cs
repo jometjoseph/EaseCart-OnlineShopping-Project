@@ -31,6 +31,7 @@ namespace CartProject_1.Controllers
                 .Select(c => new CartViewDto
                 {
                     Id = c.Id,
+                    Status = c.Status,
                     Product = new()
                     {
                         Id = c.ProductId,
@@ -73,6 +74,7 @@ namespace CartProject_1.Controllers
                 .Select(c => new CartViewDto
                 {
                     Id = c.Id,
+                    Status= c.Status,
                     Product = new()
                     {
                         Id = c.ProductId,
@@ -116,6 +118,7 @@ namespace CartProject_1.Controllers
 
             var cartProduct = new Cart
             {
+                Status = Status.now,
                 ProductId = dto.ProductId,
                 ApplicationUserId = dto.ApplicationUserID
             };
@@ -125,6 +128,41 @@ namespace CartProject_1.Controllers
             result.Result = new()
             {
                 Id = cartProduct.Id,
+                Status = cartProduct.Status,
+                Product = null,
+                ApplicationUser = null
+            };
+            return Ok(result);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(CartViewDto[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CartViewDto[]), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateCartItems(int id, CartCreateDto dto)
+        {
+            var result = new ServiceResponse<CartViewDto>();
+
+            var cartItem = await _context.Carts.FindAsync(id);
+            if (cartItem == null)
+            {
+                return NotFound("Cart item doesn't exist");
+            }
+            if (cartItem.Status == Status.now)
+            {
+                cartItem.Status = Status.later;
+            }
+            else
+            {
+                cartItem.Status = Status.now;
+            }
+            await _context.SaveChangesAsync();
+
+            result.Result = new CartViewDto()
+            {
+                Id = cartItem.Id,
+                Status = cartItem.Status,
+                Product = null,
+                ApplicationUser = null
             };
             return Ok(result);
         }

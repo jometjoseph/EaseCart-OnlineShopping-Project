@@ -1,22 +1,25 @@
 ﻿using CartProject_1.Types;
-using System.ComponentModel.DataAnnotations;
 
 namespace CartProject_1.Models
 {
-    public class Cart
+    public class Order
     {
         public int Id { get; set; }
 
-        [Required]
-        public int ProductId { get; set; }
+        public int Quantity { get; set; }
 
-        public Status Status { get; set; }
+        public float Total { get; set; }
+
+        public OrderStatus Status { get; set; }
+
+        public int ProductId { get; set; }
 
         public Product Product { get; set; }
 
-        [Required]
         public string ApplicationUserId { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
+
+        public DateTime OrderedTime { get; set; }
     }
 }
