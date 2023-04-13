@@ -85,38 +85,33 @@ namespace CartProject_1.Controllers
         [ProducesResponseType(typeof(ProductViewDto), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetProductByCategoryIdAsync(int id)
         {
-            var serviceResponse = new ServiceResponse<ProductViewDto>();
-            var result = await _context.Products
-                .Include(c => c.Category).FirstOrDefaultAsync(p => p.CategoryId == id);
+            var result = new List<ProductViewDto>();
+            result = await _context.Products
+                .Where(p => p.CategoryId == id)
+                .Include(c => c.Category)
+                .Select(s => new ProductViewDto()
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    ImageUrl= s.ImageUrl,
+                    Price = s.Price,
+                    Rating = s.Rating,
+                    Quantity = s.Quantity,
+                    Category = new()
+                    {
+                        Id = s.Category.Id,
+                        Name = s.Category.Name,
+                        Description = s.Category.Description,
+                    }
+                }).ToListAsync();
 
-            if (result is null)
+            if(result.Count < 1 )
             {
-                serviceResponse.AddError("Category", "No products in this category");
-                return NotFound(serviceResponse);
+                return NotFound("No products in this category");
             }
 
-            ServiceResponse<ProductViewDto> product = new()
-            {
-                Result = new()
-                {
-                    Id = result.Id,
-                    Name = result.Name,
-                    Description = result.Description,
-                    Category = new CategoryViewDto()
-                    {
-                        Id = result.Category.Id,
-                        Name = result.Category.Name,
-                        Description = result.Category.Description,
-                    },
-                    ImageUrl = result.ImageUrl,
-                    Price = result.Price,
-                    Rating = result.Rating,
-                    Quantity = result.Quantity
-                }
-            };
-
-            return Ok(product);
-
+            return Ok(result);
         }
 
 

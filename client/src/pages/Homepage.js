@@ -11,6 +11,8 @@ import { Navbar } from "react-bootstrap";
 function Homepage() {
     const [products,setProducts] = useState([]);
     const [profile,SetProfile] = useState("");
+    const [searchInput, setSearchInput] = useState('');
+    const [filteredResults, setFilteredResults] = useState([]);
     setSecNavbar(true);
     useEffect(() =>{
         try{
@@ -48,6 +50,22 @@ function Homepage() {
           console.log("eror from add to cart",error);
         }
       
+      }
+
+      const searchOutput = (searchKey) => {
+        console.log("searchkey is ", searchKey)
+        setSearchInput(searchKey);
+        if (searchInput !== '') {
+          const filteredData = products.filter((item) => {
+            return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+          })
+          setFilteredResults(filteredData);
+          console.log("filtered items are ", filteredData);
+        }
+        else {
+          console.log("in else case ")
+          setFilteredResults(products);
+        }
       }
     return (
         <>

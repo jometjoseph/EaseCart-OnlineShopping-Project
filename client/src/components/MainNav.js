@@ -36,6 +36,7 @@ function MainNav() {
                                         placeholder="Search"
                                         className="me-2"
                                         aria-label="Search"
+                                        onChange={(e) => {}}
                                     />
                                     <Button variant="outline-success">Search</Button>
                                 </Form>

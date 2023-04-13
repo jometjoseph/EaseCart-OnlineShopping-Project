@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jomet.joseph\\Desktop\\React\\onlineshoppingproj\\server\\CartProject-1\\CartProject-1.csproj": {}
+    "C:\\Users\\jomet.joseph\\Documents\\GitHub\\EaseCart-OnlineShopping-Project\\server\\CartProject-1\\CartProject-1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jomet.joseph\\Desktop\\React\\onlineshoppingproj\\server\\CartProject-1\\CartProject-1.csproj": {
+    "C:\\Users\\jomet.joseph\\Documents\\GitHub\\EaseCart-OnlineShopping-Project\\server\\CartProject-1\\CartProject-1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jomet.joseph\\Desktop\\React\\onlineshoppingproj\\server\\CartProject-1\\CartProject-1.csproj",
+        "projectUniqueName": "C:\\Users\\jomet.joseph\\Documents\\GitHub\\EaseCart-OnlineShopping-Project\\server\\CartProject-1\\CartProject-1.csproj",
         "projectName": "CartProject-1",
-        "projectPath": "C:\\Users\\jomet.joseph\\Desktop\\React\\onlineshoppingproj\\server\\CartProject-1\\CartProject-1.csproj",
+        "projectPath": "C:\\Users\\jomet.joseph\\Documents\\GitHub\\EaseCart-OnlineShopping-Project\\server\\CartProject-1\\CartProject-1.csproj",
         "packagesPath": "C:\\Users\\jomet.joseph\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jomet.joseph\\Desktop\\React\\onlineshoppingproj\\server\\CartProject-1\\obj\\",
+        "outputPath": "C:\\Users\\jomet.joseph\\Documents\\GitHub\\EaseCart-OnlineShopping-Project\\server\\CartProject-1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jomet.joseph\\AppData\\Roaming\\NuGet\\NuGet.Config",

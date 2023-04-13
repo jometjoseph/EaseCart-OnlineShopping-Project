@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lCWC1ElcD1YX5OYIt8U0UkhFowgyEn4yItMqewGW5FLreekhzMD3fepMT/SJby1hilNdPtSxa3xIj/PnHadlSg==",
+  "dgSpecHash": "TH/4Mi4xHWM5veBlwQhZuin01aChJeJXsEm5mThfv6sXb8Pzxc9YgJyylA42vMYSLfZBOEdTSJjHAVIhSAZuXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jomet.joseph\\Desktop\\React\\onlineshoppingproj\\server\\CartProject-1\\CartProject-1.csproj",
+  "projectFilePath": "C:\\Users\\jomet.joseph\\Documents\\GitHub\\EaseCart-OnlineShopping-Project\\server\\CartProject-1\\CartProject-1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jomet.joseph\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\jomet.joseph\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

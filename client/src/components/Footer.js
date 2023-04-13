@@ -12,7 +12,7 @@ import { getToken } from '../utils/tokenHelper';
 
 function Footer() {
   const token = getToken();
-  console.log("token in footer",token);
+  // console.log("token in footer",token);
   return (
     <>
     {token && <>

@@ -97,8 +97,8 @@ function Login() {
                           <button className="btn btn-primary btn-md" type="submit">Login</button>
                         </div>
                       </form>
-                      <p class="text-center text-muted mt-5 mb-0">Doesn't have an account? <Link to={'/registration'}
-                    class="fw-bold text-body"><u>Register here</u></Link></p>
+                      <p className="text-center text-muted mt-5 mb-0">Doesn't have an account? <Link to={'/registration'}
+                    className="fw-bold text-body"><u>Register here</u></Link></p>
                     </div>
                   </div>
                   <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
