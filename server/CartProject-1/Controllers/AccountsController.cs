@@ -72,7 +72,7 @@ namespace CartProject_1.Controllers
         //    return user == null ? NotFound() : Ok(user);
         //}
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("UserProfiles")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

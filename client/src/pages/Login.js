@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getToken, setSecNavbar, setToken } from '../utils/tokenHelper';
-import { ToastContainer } from 'react-bootstrap';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import login from '../images/login.jpg';
 import { toast } from 'react-toastify';
+import jwt_decode from "jwt-decode";
 
 // const axios = require('axios');
 
@@ -44,9 +44,8 @@ function Login() {
         setToken(res.data.result);
         const token = getToken();
           console.log("token stored is ", token);
-          // console.log('Login successful!');
           toast.success('logged in successfully', {
-            position: toast.POSITION.TOP_CENTER
+            position: toast.POSITION.TOP_RIGHT
           });
           if(token){
             navigate('/home');
@@ -64,7 +63,6 @@ function Login() {
         <></>
       }
       <section className="h-100 gradient-form">
-        <ToastContainer/>
         <div className="container py-4">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-xl-9">

@@ -5,6 +5,7 @@ using CartProject_1.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CartProject_1.Controllers
 {
@@ -135,6 +136,38 @@ namespace CartProject_1.Controllers
                 Status = OrderStatus.OntheWay,
                 ProductId = dto.ProductId,
                 ApplicationUserId = dto.ApplicationUserId,
+                OrderedTime = DateTime.UtcNow,
+            };
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+
+            result.Result = new()
+            {
+                Id = order.Id,
+                Quantity = order.Quantity,
+                Total = order.Total,
+                Status = order.Status,
+                Product = null,
+                ApplicationUser = null
+            };
+            return Ok(result);
+
+        }
+
+        [HttpPost("userOrders")]
+        [ProducesResponseType(typeof(OrderViewDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(OrderViewDto), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateOrderByIdAsync(OrderCreateDto dto)
+        {
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var result = new ServiceResponse<OrderViewDto>();
+            var order = new Order()
+            {
+                Quantity = dto.Quantity,
+                Total = dto.Total,
+                Status = OrderStatus.OntheWay,
+                ProductId = dto.ProductId,
+                ApplicationUserId = id,
                 OrderedTime = DateTime.UtcNow,
             };
             _context.Orders.Add(order);

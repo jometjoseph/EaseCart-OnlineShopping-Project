@@ -12,6 +12,8 @@ namespace CartProject_1.Models
 
         public OrderStatus Status { get; set; }
 
+        public DateTime OrderedTime { get; set; }
+
         public int ProductId { get; set; }
 
         public Product Product { get; set; }
@@ -20,6 +22,5 @@ namespace CartProject_1.Models
 
         public ApplicationUser ApplicationUser { get; set; }
 
-        public DateTime OrderedTime { get; set; }
     }
 }
