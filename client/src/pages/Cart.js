@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { TrashFill } from 'react-bootstrap-icons';
 import { setSecNavbar } from '../utils/tokenHelper';
 import CartSum from '../components/CartSum';
+import { toast } from 'react-toastify';
 
 function Cart() {
   const navigate = useNavigate();
@@ -25,6 +26,11 @@ function Cart() {
         console.log("cart  ", res);
         setCartProducts(res.data);
         const filteredItems = res.data;
+        if(!filteredItems){
+          toast.warning('Add products to your cart to view them', {
+            position: toast.POSITION.TOP_CENTER
+          });
+        }
         console.log("cartproducts bhdihicv", filteredItems);
         const BuyLater = filteredItems.filter((product) => product.status === 2);
         setBuyLater(BuyLater);
@@ -68,6 +74,9 @@ function Cart() {
       await axios.delete(`https://localhost:7258/api/Cart/${id}`)
         .then((res) => {
           console.log("deleted item successfully", res);
+          toast.success('Product removed from your cart', {
+            position: toast.POSITION.TOP_CENTER
+          });
           getCartItems();
         })
         .catch((err) => {
@@ -231,15 +240,21 @@ function Cart() {
                 </div>
               </div>
             </>) : (<>
+              <div className="col">
+                <div className="card">
+                  <div className="card-body p-4">
               <div className="row">
-                <h2 className="mb-3"><i>No products added to the cart yet!</i></h2>
                 <div className="card bg-light text-dark rounded-3">
                   <div className="card-body">
+                <h2 className="mb-3"><i>No products added to the cart yet!</i></h2>
                     <button type='button' className='btn btn-secondary btn-md' onClick={backToHome}>
                       Back to home
                     </button>
                   </div>
                 </div>
+              </div>
+              </div>
+              </div>
               </div>
             </>)}
           </div>

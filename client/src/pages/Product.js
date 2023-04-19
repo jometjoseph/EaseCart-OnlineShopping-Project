@@ -12,7 +12,7 @@ function Product(){
        try{
         axios.get(`https://localhost:7258/api/Product/ProductById/${id}`)
         .then(res => {
-            console.log("result ",res);
+            console.log("result ",res.data.result);
             setProduct(res.data.result);
             console.log("product",product);
             console.log("product name",product.name);

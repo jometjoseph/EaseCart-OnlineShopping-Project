@@ -6,7 +6,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBRipple } from "mdb-react-ui-kit";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { setSecNavbar } from "../utils/tokenHelper";
-import { Navbar } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 function Homepage() {
     const [products, setProducts] = useState([]);
@@ -44,6 +44,9 @@ function Homepage() {
                 applicationUserId: userId
             }).then(res => {
                 console.log("result from add to cart", res);
+                toast.success('Product added to your cart', {
+                    position: toast.POSITION.TOP_CENTER
+                  });
             })
         }
         catch (error) {

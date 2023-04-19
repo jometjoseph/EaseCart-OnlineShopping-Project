@@ -64,8 +64,7 @@ function TokenInterceptor() {
 
                 Object.values(error.response.data).forEach(value=>{
                     value.forEach(e=>{
-                        console.log(e)
-                        
+                        console.log(e)  
                     })
                 });
                 return Promise.reject(error);

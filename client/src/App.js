@@ -2,9 +2,10 @@
 import { BrowserRouter, Outlet, Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import MainNav from './components/MainNav';
-import { ToastContainer } from 'react-bootstrap';
+import { ToastContainer } from 'react-toastify';
 import TokenInterceptor from './utils/TokenInterceptor';
 import Footer from './components/Footer';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

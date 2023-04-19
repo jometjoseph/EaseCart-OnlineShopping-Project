@@ -1,6 +1,6 @@
 ﻿namespace CartProject_1.Types
 {
-    public enum PaymentMenthods
+    public enum PaymentMethods
     {
         CashOnDelivery = 1,
         DebitCard = 2,
