@@ -138,7 +138,7 @@ namespace CartProject_1.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(CartViewDto[]), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(CartViewDto[]), StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateCartItems(int id, CartCreateDto dto)
+        public async Task<IActionResult> UpdateCartItems(int id)
         {
             var result = new ServiceResponse<CartViewDto>();
 
