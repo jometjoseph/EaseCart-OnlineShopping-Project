@@ -15,7 +15,7 @@ function Registration() {
             .min(8, '* Password not valid')
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
-                '* invalid password'
+                '* All passwords must match the Criteria of 1 Uppercase letter,! LowerCase letter,1 digit and 1 Special character'
             )
             .required('* Password is required'),
         confirmPassword: yup.string().oneOf([yup.ref("password"), "password doesn't match"]).required("password is required")

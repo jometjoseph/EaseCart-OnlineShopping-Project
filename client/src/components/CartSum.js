@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -6,6 +6,10 @@ function CartSum(props){
     const navigate = useNavigate();
     const backToHome = () => {
     navigate('/home');
+  }
+  console.log("quantity array in cartSum",props.quantity);
+  const orderProducts = () => {
+    navigate('/order');
   }
     return(
         <>
@@ -29,12 +33,12 @@ function CartSum(props){
                             <p className="mb-2">${Math.round(props.sum + 20)}.00</p>
                           </div>
 
-                          <button type="button" className="btn btn-info btn-block btn-lg">
+                          <Link to={`/order/${props.quantity}`} type="button" className="btn btn-info btn-block btn-lg" >
                             <div className="d-flex justify-content-between">
                               <span>${Math.round(props.sum + 20)}.00</span>
                               <span>Checkout <i className="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
-                          </button>
+                          </Link>
                           <button type='button' className='btn btn-secondary btn-lg' onClick={backToHome}>
                             Back to home
                           </button>

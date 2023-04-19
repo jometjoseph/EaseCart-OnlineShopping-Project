@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import Logout from "./pages/Logout";
 import Product from "./pages/Product";
 import Registration from "./pages/Registration";
+import Order from "./pages/Order.js";
 
 const routes = createBrowserRouter([
     {
@@ -36,7 +37,10 @@ const routes = createBrowserRouter([
                 path: "logout",
                 element: <Logout/>
             },
-            
+            {
+                path: "order/:quantity",
+                element: <Order/>
+            }
 
         ]
     }
