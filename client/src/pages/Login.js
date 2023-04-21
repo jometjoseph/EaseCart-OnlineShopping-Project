@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { getToken, setSecNavbar, setToken } from '../utils/tokenHelper';
+import { getToken, isAdministrator, setSecNavbar, setToken } from '../utils/tokenHelper';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
@@ -47,12 +47,18 @@ function Login() {
           toast.success('logged in successfully', {
             position: toast.POSITION.TOP_RIGHT
           });
-          if(token){
-            navigate('/home');
-          }
+          if(isAdministrator())
+            {
+                console.log("admin check",isAdministrator());
+                return navigate('/admin');
+            }
+            return navigate('/home');
     })
     .catch(err => {
         console.log("login failed",err);
+        toast.error('Invalid Credentials', {
+          position: toast.POSITION.TOP_RIGHT
+        });
     })
 }
   return (
@@ -62,7 +68,7 @@ function Login() {
       // <ToastContainer />
         <></>
       }
-      <section className="h-100 gradient-form">
+      <section className="h-100 mt-5 gradient-form">
         <div className="container py-4">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-xl-9">
@@ -101,7 +107,7 @@ function Login() {
                   </div>
                   <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                      <img className='img-fluid' src={login} alt='' />
+                      <img className='img-fluid' src={login} alt='easecart' />
                     </div>
                   </div>
                 </div>

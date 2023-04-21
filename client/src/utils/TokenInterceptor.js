@@ -52,17 +52,17 @@ function TokenInterceptor() {
                 }
             }
             if(error.response.status === 400){
-                var title1 = error.response.data.title;
+                var title1 = error.response.data.error;
 
                 if(title1){
-                    toast.success(error.response.data.title, {
+                    toast.success(error.response.data, {
                         position: toast.POSITION.TOP_RIGHT
                       });
                     console.log("title error",title1);
                     return;
                 }
 
-                Object.values(error.response.data).forEach(value=>{
+                Object.values(error.response.data.error).forEach(value=>{
                     value.forEach(e=>{
                         console.log(e)  
                     })

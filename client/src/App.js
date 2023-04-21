@@ -9,7 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className='App Container'>
+    <div className='App Container-fluid'>
+              <div className="d-flex flex-column">
         <MainNav/>
       <ToastContainer/>
       <TokenInterceptor/>
@@ -17,6 +18,7 @@ function App() {
           <Outlet/>
       </div>
       <Footer/>
+      </div>
     </div>
       
  

@@ -1,10 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 
 function Registration() {
+    const navigate =useNavigate();
     const schema = yup.object().shape({
         name: yup.string().required('* Name is required'),
         email: yup.string().email('email is not valid').required("Email is required"),
@@ -33,9 +34,10 @@ function Registration() {
         };
 
         try {
-            await axios.post('https://localhost:7258/register',RegData)
+            await axios.post('https://localhost:7258/user/register',RegData)
             .then(res => {
-                console.log("result after registration", res)
+                console.log("result after registration", res);
+                navigate('/');
             })
 }
         catch (err) {
