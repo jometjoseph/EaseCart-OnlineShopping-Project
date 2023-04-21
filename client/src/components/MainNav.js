@@ -40,7 +40,7 @@ function MainNav() {
                                     />
                                     <Button variant="outline-success">Search</Button>
                                 </Form>
-                                <Nav.Link href="#h">Home</Nav.Link>
+                                <Nav.Link href="/home">Home</Nav.Link>
                                 <Nav.Link href="/cart">Cart</Nav.Link>
                                 <NavDropdown
                                     title="Actions"
@@ -52,8 +52,8 @@ function MainNav() {
                                     <NavDropdown.Item href="/cart">
                                         Cart
                                     </NavDropdown.Item>
-                                    <NavDropdown.Item href="/registration">
-                                        Registration
+                                    <NavDropdown.Item href="/myorders">
+                                        MyOrders
                                     </NavDropdown.Item>
                                     <NavDropdown.Divider />
 
@@ -68,30 +68,33 @@ function MainNav() {
                     </Navbar.Offcanvas>
                 </Container>
             </Navbar>
+            </>}
+            {!token && <>
+                <Navbar key="Mainnavbar" bg="light" expand={expand} className="">
+                <Container fluid>
+                    <Navbar.Brand href="#">EaseCart</Navbar.Brand>
+                    <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+                    <Navbar.Offcanvas
+                        id={`offcanvasNavbar-expand-${expand}`}
+                        aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+                        placement="end"
+                    >
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                                EaseCart
+                            </Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            <Nav className="justify-content-end flex-grow-1 pe-3">
+                                <Nav.Link className='bg-success rounded-3' href="/registration">Signup</Nav.Link>
+                                {/* <Nav.Link href="#action6">About Us</Nav.Link> */}
+                            </Nav>
+                            
 
-           
-                {/* <Navbar key="secnavbar" bg="light" expand={expand} className="mt-6">
-                    <Container fluid>
-                        <Navbar.Brand href="#">EaseCart</Navbar.Brand>
-                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-                        <Navbar.Offcanvas
-                            id={`offcanvasNavbar-expand-${expand}`}
-                            aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-                            placement="end"
-                        >
-                            <Offcanvas.Header closeButton>
-                                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    EaseCart
-                                </Offcanvas.Title>
-                            </Offcanvas.Header>
-                            <Offcanvas.Body>
-                               
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar> */}
-                
-
+                        </Offcanvas.Body>
+                    </Navbar.Offcanvas>
+                </Container>
+            </Navbar>
             </>}
 
         </div>

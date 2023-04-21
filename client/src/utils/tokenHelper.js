@@ -10,10 +10,13 @@ export const getToken = () => {
 
 export const removeToken = () => {
     localStorage.removeItem('token');
+    // window.location.reload();
 };
 
 export const setSecNavbar = (value) => {
     localStorage.setItem('SecNavbar',value);
+    
+
 }
 
 export const getSecNavbar = () => {

@@ -62,7 +62,7 @@ namespace CartProject_1.Services
             var user = await _userManager.FindByEmailAsync(dto.Email);
             if (user == null)
             {
-                response.AddError(nameof(dto.Email), "An account with this email does not exist.");
+                response.AddError("error","An account with this email does not exist.");
                 return response;
             }
 

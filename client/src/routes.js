@@ -7,6 +7,9 @@ import Logout from "./pages/Logout";
 import Product from "./pages/Product";
 import Registration from "./pages/Registration";
 import Order from "./pages/Order.js";
+import AdminGuard from "./pages/admin/AdminGuard";
+import Dashboard from "./pages/admin/Dashboard";
+import MyOrders from "./pages/MyOrders";
 
 const routes = createBrowserRouter([
     {
@@ -40,8 +43,22 @@ const routes = createBrowserRouter([
             {
                 path: "order/:quantity",
                 element: <Order/>
+            },
+            {
+                path: "myorders",
+                element: <MyOrders/>
             }
 
+        ]
+    },
+    {
+        path: "/admin",
+        element: <AdminGuard/>,
+        children: [
+            {
+                path: "/admin",
+                element: <Dashboard/>
+            },
         ]
     }
 ])

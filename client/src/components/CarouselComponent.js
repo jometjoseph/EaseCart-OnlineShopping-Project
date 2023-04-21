@@ -8,7 +8,7 @@ function CarouselComponent() {
         <img
           className="d-block w-100"
           src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(56).webp"
-          alt="First slide"
+          alt="Latest trends"
         />
         <Carousel.Caption>
           <h2>Latest Trend</h2>
@@ -19,7 +19,7 @@ function CarouselComponent() {
         <img
           className="d-block w-100"
           src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(38).webp"
-          alt="Second slide"
+          alt="Discounts"
         />
 
         <Carousel.Caption>
@@ -31,7 +31,7 @@ function CarouselComponent() {
         <img
           className="d-block w-100"
           src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(36).webp"
-          alt="Third slide"
+          alt="Buy1get1"
         />
 
         <Carousel.Caption>

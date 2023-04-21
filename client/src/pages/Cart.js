@@ -157,7 +157,7 @@ function Cart() {
                                     <div>
                                       <img
                                         src={item.product.imageUrl}
-                                        className="img-fluid rounded-3" alt="Shopping item" style={{ width: "65px" }} />
+                                        className="img-fluid rounded-3" alt={item.product.name} style={{ width: "65px" }} />
                                     </div>
                                     <div className="ms-3">
                                       <h5>{item.product.name}</h5>type of status {typeof (item.status)}
