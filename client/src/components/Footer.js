@@ -9,6 +9,7 @@ import {
   MDBBtn
 } from 'mdb-react-ui-kit';
 import { getToken } from '../utils/tokenHelper';
+import { Facebook, Github, Google, Instagram, Linkedin, Twitter } from 'react-bootstrap-icons';
 
 function Footer() {
   const token = getToken();
@@ -20,27 +21,27 @@ function Footer() {
       <MDBContainer className='p-4'>
         <section className='mb-4'>
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='facebook-f' />
+            <Facebook/>
           </MDBBtn>
 
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='twitter' />
+            <Twitter/>
           </MDBBtn>
 
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='google' />
+            <Google/>
           </MDBBtn>
 
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='instagram' />
+            <Instagram/>
           </MDBBtn>
 
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='linkedin-in' />
+            <Linkedin/>
           </MDBBtn>
 
           <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='github' />
+            <Github/>
           </MDBBtn>
         </section>
 

@@ -56,9 +56,9 @@ function Login() {
     })
     .catch(err => {
         console.log("login failed",err);
-        toast.error('Invalid Credentials', {
-          position: toast.POSITION.TOP_RIGHT
-        });
+        // toast.error('Invalid Credentials', {
+        //   position: toast.POSITION.TOP_RIGHT
+        // });
     })
 }
   return (
