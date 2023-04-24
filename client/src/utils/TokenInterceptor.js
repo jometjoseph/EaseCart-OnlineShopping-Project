@@ -32,6 +32,12 @@ function TokenInterceptor() {
         },
         function (error) {
             console.log("error from backend TI",error)
+            console.log("network error",error.message);
+            if(error.message === 'Network Error'){
+                toast.error("Network Error, trying to reconnect!", {
+                    position: toast.POSITION.TOP_CENTER
+                })
+            }
             // console.log('From interceptor', error);
             if (error.response.status === 401) {
                 navigate('/');
@@ -45,7 +51,7 @@ function TokenInterceptor() {
                 var title = error.response.data.title;
 
                 if(title){
-                    toast.error(title, {
+                    toast.error(title[0], {
                         position: toast.POSITION.TOP_RIGHT
                       });
                     return;
@@ -55,10 +61,10 @@ function TokenInterceptor() {
                 var title1 = error.response.data.error;
 
                 if(title1){
-                    toast.success(error.response.data, {
+                    toast.error(title1[0], {
                         position: toast.POSITION.TOP_RIGHT
                       });
-                    console.log("title error",title1);
+                    console.log("title error",title1[0]);
                     return;
                 }
 

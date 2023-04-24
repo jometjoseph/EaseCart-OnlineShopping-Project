@@ -4,6 +4,8 @@ import TokenInterceptor from "../../utils/TokenInterceptor";
 import jwt_decode from "jwt-decode";
 import { getToken } from "../../utils/tokenHelper";
 import Sidebar from "../../components/admin/SideNavbar";
+import MainNav from "../../components/MainNav";
+
 
 function AdminGuard() {
   const navigate = useNavigate();
@@ -26,12 +28,21 @@ function AdminGuard() {
     }
   }, []);
   return (
-    <div className="app container-fluid">
-      <div className="row flex-nowrap">
-        <Sidebar />
-        <TokenInterceptor />
-        <div className="container-fluid">
-          <Outlet />
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col">
+          <MainNav />
+        </div>
+      </div>
+      <div className="row">
+        <div className="container-fluid mt-4">
+          <div className="row flex-nowrap mt-2">
+            <Sidebar />
+            <TokenInterceptor />
+            <div className="col-sm-9 col-md-10 main-content">
+              <Outlet />
+            </div>
+          </div>
         </div>
       </div>
     </div>

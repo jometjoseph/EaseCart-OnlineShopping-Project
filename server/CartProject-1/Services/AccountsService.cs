@@ -75,11 +75,11 @@ namespace CartProject_1.Services
 
             // If the signin failed, generate error messages.
             if (signin.IsLockedOut)
-                response.AddError("", "Account locked.");
+                response.AddError("error", "Account locked.");
             else if (signin.IsNotAllowed)
-                response.AddError("", "You are not allowed to signin.");
+                response.AddError("error", "You are not allowed to signin.");
             else
-                response.AddError("", "Invalid email/password.");
+                response.AddError("error", "Invalid email/password.");
 
             return response;
         }

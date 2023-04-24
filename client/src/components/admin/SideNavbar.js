@@ -1,100 +1,75 @@
-import "./SideNavbar.css";
+import { Link } from "react-router-dom";
 import {
-  Bricks,
-  GridFill,
   HouseDoorFill,
   ListTask,
   PeopleFill,
+  Table,
+  TagFill,
 } from "react-bootstrap-icons";
 
 function Sidebar() {
   return (
     <>
-      <div
-        className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-        style={{ width: "280px" }}
-      >
-        flex
-        <a
-          href="/"
-          className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-        >
-          {/* <svg className="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg> */}
-          <span className="fs-4">Sidebar</span>
-        </a>
-        <ul className="nav nav-pills flex-column mb-auto">
-          <li className="nav-item">
-            <a href="#" className="nav-link active" aria-current="page">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              Dashboard
-            </a>
-          </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              Orders
-            </a>
-          </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              Products
-            </a>
-          </li>
-          <li>
-            <a href="#" className="nav-link text-white">
-              Customers
-            </a>
-          </li>
-          <div className="dropdown">
-            <a
-              href="#"
-              className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-              id="dropdownUser1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src=""
-                alt=""
-                width="32"
-                height="32"
-                className="rounded-circle me-2"
-              />
-              <strong>mdo</strong>
-            </a>
-            <ul
-              className="dropdown-menu dropdown-menu-dark text-small shadow"
-              aria-labelledby="dropdownUser1"
-            >
-              <li>
-                <a className="dropdown-item" href="#">
-                  New project...
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Settings
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Profile
-                </a>
-              </li>
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Sign out
-                </a>
-              </li>
-            </ul>
-          </div>
-        </ul>
+      <div className="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark mt-4 ">
+        <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          <a
+            href="/"
+            className="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+          >
+            <span className="fs-5 d-none d-sm-inline">Menu</span>
+          </a>
+          <ul
+            className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start "
+            id="menu"
+          >
+            <li className="nav-item">
+              <Link
+                to={"/admin"}
+                className="nav-link align-middle px-0 text-white"
+              >
+                <HouseDoorFill />{" "}
+                <span className="ms-1 d-none d-sm-inline ">Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={"/admin"}
+                className="nav-link px-0 align-middle text-white"
+              >
+                <Table />{" "}
+                <span className="ms-1 d-none d-sm-inline">Dashboard</span>{" "}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={"/admin/orders"}
+                className="nav-link px-0 align-middle text-white"
+              >
+                <ListTask />{" "}
+                <span className="ms-1 d-none d-sm-inline">Orders</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={"/admin/products"}
+                className="nav-link px-0 align-middle text-white"
+              >
+                <TagFill />{" "}
+                <span className="ms-1 d-none d-sm-inline">Products</span>{" "}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={"/admin/customers"}
+                className="nav-link px-0 align-middle text-white"
+              >
+                <PeopleFill />{" "}
+                <span className="ms-1 d-none d-sm-inline">Customers</span>{" "}
+              </Link>
+            </li>
+          </ul>
+          <hr />
+        </div>
       </div>
     </>
   );

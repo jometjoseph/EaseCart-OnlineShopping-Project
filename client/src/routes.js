@@ -10,6 +10,9 @@ import Order from "./pages/Order.js";
 import AdminGuard from "./pages/admin/AdminGuard";
 import Dashboard from "./pages/admin/Dashboard";
 import MyOrders from "./pages/MyOrders";
+import Products from "./pages/admin/Products";
+import Orders from "./pages/admin/Orders";
+import Customers from "./pages/admin/Customers";
 
 const routes = createBrowserRouter([
     {
@@ -59,6 +62,18 @@ const routes = createBrowserRouter([
                 path: "/admin",
                 element: <Dashboard/>
             },
+            {
+                path: "/admin/products",
+                element: <Products/>
+            },
+            {
+                path: "/admin/orders",
+                element: <Orders/>
+            },
+            {
+                path: "/admin/customers",
+                element: <Customers/>
+            }
         ]
     }
 ])
