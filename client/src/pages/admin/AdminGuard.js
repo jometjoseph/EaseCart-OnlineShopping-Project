@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import { getToken } from "../../utils/tokenHelper";
 import Sidebar from "../../components/admin/SideNavbar";
 import MainNav from "../../components/MainNav";
+import { ToastContainer } from "react-toastify";
 
 
 function AdminGuard() {
@@ -40,6 +41,7 @@ function AdminGuard() {
             <Sidebar />
             <TokenInterceptor />
             <div className="col-sm-9 col-md-10 main-content">
+            <ToastContainer/>
               <Outlet />
             </div>
           </div>

@@ -67,7 +67,7 @@ function Dashboard() {
                   <tbody>
                     {products.map((item, index) => {
                       return (
-                        <tr>
+                        <tr key={index}>
                           <th scope="row">{index + 1}</th>
                           <td>
                             <img
@@ -81,7 +81,7 @@ function Dashboard() {
                           <td>{item.category.name}</td>
                           <td>
                             <span
-                              class="d-inline-block text-truncate"
+                              className="d-inline-block text-truncate"
                               style={{ maxWidth: "150px" }}
                             >
                               {item.description}
@@ -134,7 +134,7 @@ function Dashboard() {
                   <tbody>
                     {orders.map((item, index) => {
                       return (
-                        <tr>
+                        <tr key={index}>
                           <th scope="row">{index + 1}</th>
                           <td>{item.applicationUser.name}</td>
                           <td>{item.product.name}</td>

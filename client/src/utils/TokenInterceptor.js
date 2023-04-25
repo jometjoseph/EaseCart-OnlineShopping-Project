@@ -65,15 +65,15 @@ function TokenInterceptor() {
                         position: toast.POSITION.TOP_RIGHT
                       });
                     console.log("title error",title1[0]);
-                    return;
+                    // return;
                 }
 
-                Object.values(error.response.data.error).forEach(value=>{
-                    value.forEach(e=>{
-                        console.log(e)  
-                    })
-                });
-                return Promise.reject(error);
+                // Object.values(error.response.data.error).forEach(value=>{
+                //     value.forEach(e=>{
+                //         console.log(e)  
+                //     })
+                // });
+                // return Promise.reject(error);
             }
         }
     );
