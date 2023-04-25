@@ -118,18 +118,18 @@ namespace CartProject_1.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(ProductCreateDto), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProductCreateDto), StatusCodes.Status400BadRequest)]
-        public async Task<ServiceResponse<ProductViewDto>> CreateProductAsync(ProductCreateDto dto)
+        public async Task<IActionResult> CreateProductAsync(ProductCreateDto dto)
         {
             var result = new ServiceResponse<ProductViewDto>();
 
             if (!await _context.Categories.AnyAsync(m => m.Id == dto.CategoryId))
-                result.AddError(nameof(dto.CategoryId), "Invalid category");
+                result.AddError("error", "Invalid category");
 
             if (await _context.Products.AnyAsync(m => m.Name == dto.Name))
-                result.AddError(nameof(dto.Name), "A similar product already exists.");
+                result.AddError("error", "A similar product already exists.");
 
             if (!result.IsValid)
-                return result;
+                return BadRequest(result.Errors);
 
             var product = new Product
             {
@@ -153,10 +153,10 @@ namespace CartProject_1.Controllers
                 Rating = product.Rating,
                 Quantity = product.Quantity
             };
-            return result;
+            return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(typeof(ProductViewDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProductViewDto), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateProductAsync(int id, ProductCreateDto dto)
@@ -196,7 +196,7 @@ namespace CartProject_1.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ProductCreateDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProductCreateDto), StatusCodes.Status404NotFound)]
         public async Task<ServiceResponse<bool>> DeleteProductAsync(int id)

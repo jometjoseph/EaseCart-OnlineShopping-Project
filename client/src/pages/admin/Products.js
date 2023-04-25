@@ -2,11 +2,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductCreate from "../../components/admin/ProductCreate";
+import { PencilFill, TrashFill } from "react-bootstrap-icons";
+import { toast } from "react-toastify";
+import ProductEdit from "../../components/admin/ProductEdit";
 
 function Products() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
+    getProducts();
+  }, []);
+
+  const getProducts = () => {
     try {
       axios.get("https://localhost:7258/api/Product").then((res) => {
         console.log("result fro prod fetch", res.data);
@@ -15,7 +22,28 @@ function Products() {
     } catch (err) {
       console.log("product fetching failed", err);
     }
-  }, []);
+  };
+
+  const deleteProduct = async (id) => {
+    console.log("product to be del",id);
+    if (!window.confirm('Are you sure to delete this Product?')) {
+      console.log("deleting product");
+      return;
+    }
+    else {
+      await axios.delete(`https://localhost:7258/api/Product/${id}`)
+        .then((res) => {
+          console.log("deleted Product successfully", res);
+          toast.success('Product removed from database', {
+            position: toast.POSITION.TOP_CENTER
+          });
+          getProducts();
+        })
+        .catch((err) => {
+          console.log("deletion failed", err);
+        })
+    }
+  }
   const backToHome = () => {
     navigate("/admin");
   };
@@ -27,7 +55,9 @@ function Products() {
             <h2>Products</h2>
           </div>
           <div className="">
-            <ProductCreate />
+            <ProductCreate
+              onAddProduct={(product) => setProducts([...products, product])}
+            />
           </div>
         </div>
         <div className="card">
@@ -48,6 +78,7 @@ function Products() {
                       <th scope="col">Price</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Rating</th>
+                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -76,6 +107,18 @@ function Products() {
                           <td>{item.price}</td>
                           <td>{item.quantity}</td>
                           <td>{item.rating}</td>
+                          <td>
+                            <div
+                              className="btn-group text-dark"
+                              role="group"
+                              aria-label="Basic example"
+                            >
+                              <ProductEdit prodId={item.id}/>
+                              <button type="button" className="btn btn-outline-danger" onClick={() => {deleteProduct(item.id)}}>
+                                <TrashFill/>
+                              </button>
+                            </div>
+                          </td>
                         </tr>
                       );
                     })}

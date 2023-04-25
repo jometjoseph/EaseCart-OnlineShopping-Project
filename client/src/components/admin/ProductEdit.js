@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { PencilFill } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function ProductCreate(props) {
+function ProductEdit(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,6 +20,7 @@ function ProductCreate(props) {
   const [category, setCategory] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
+    console.log("id jwhbcuvcvuvcu",props.prodId)
     try {
       axios.get("https://localhost:7258/api/Category").then((res) => {
         console.log("categories", res.data);
@@ -27,23 +29,36 @@ function ProductCreate(props) {
     } catch (error) {
       console.log("error while fetching categories", error);
     }
+    getProductDetails(props.prodId);
   }, []);
+
+  const getProductDetails = async (id) =>{
+    try{
+        await axios.get(`https://localhost:7258/api/Product/ProductById/${id}`)
+        .then(res => {
+            console.log("Product by id",res);
+        })
+    }
+    catch(err){
+        console.log("product fetching failed",err)
+    }
+  }
 
   const onSubmit = async (data) => {
     handleClose();
     console.log("new prod data", data);
     try {
-      await axios.post("https://localhost:7258/api/Product", data).then((res) => {
-        console.log("product successfully created", res);
-        if(res.status === 200){
-          toast.success("Product added successfully", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          navigate('/admin/products');
-        }
-        
-      });
-      
+      await axios
+        .post("https://localhost:7258/api/Product", data)
+        .then((res) => {
+          console.log("product successfully created", res);
+          if (res.status === 200) {
+            toast.success("Product added successfully", {
+              position: toast.POSITION.TOP_RIGHT,
+            });
+            navigate("/admin/products");
+          }
+        });
     } catch (err) {
       console.log("product addition failed", err);
     }
@@ -51,8 +66,8 @@ function ProductCreate(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        +Add New Product
+      <Button variant="outline-success" onClick={handleShow}>
+        <PencilFill/>
       </Button>
 
       <Modal
@@ -63,7 +78,7 @@ function ProductCreate(props) {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>Product Updation</Modal.Title>
         </Modal.Header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Modal.Body>
@@ -214,4 +229,4 @@ function ProductCreate(props) {
   );
 }
 
-export default ProductCreate;
+export default ProductEdit;
