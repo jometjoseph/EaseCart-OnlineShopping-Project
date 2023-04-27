@@ -7,6 +7,7 @@ function Product() {
   const navigate = useNavigate();
   const [product, setProduct] = useState("");
   const { id } = useParams();
+  
   useEffect(() => {
     console.log("productid is ", id);
     try {

@@ -13,7 +13,6 @@ function ProductCreate(props) {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm();
   const [category, setCategory] = useState([]);

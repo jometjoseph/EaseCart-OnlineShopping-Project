@@ -8,7 +8,7 @@ export const getToken = () => {
   return localStorage.getItem("token");
 };
 
-export const removeToken = () => {
+export function removeToken() {
   localStorage.removeItem("token");
   // window.location.reload();
 };

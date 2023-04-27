@@ -7,7 +7,7 @@ function Logout(){
     useEffect(() =>{
         removeToken();
         setSecNavbar(false);
-        // window.location.reload(); 
+        // window.location.reload(1); 
         navigate('/');
     })
     return(
