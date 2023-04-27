@@ -14,9 +14,9 @@ function App() {
         <MainNav/>
       <ToastContainer/>
       <TokenInterceptor/>
-      <div className='container-fluid'>
+      <>
           <Outlet/>
-      </div>
+      </>
       <Footer/>
       </div>
     </div>

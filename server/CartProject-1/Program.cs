@@ -67,6 +67,7 @@ builder.Services.AddAuthentication(options =>
     });
 
 builder.Services.AddScoped<AccountsService>();
+builder.Services.AddScoped<OrderService>();
 
 var app = builder.Build();
 

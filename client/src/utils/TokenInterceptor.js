@@ -43,6 +43,7 @@ function TokenInterceptor() {
                 navigate('/');
             }
             if (error.response.status === 404) {
+                navigate("/notfound");
                 toast.error("Page not found", {
                     position: toast.POSITION.TOP_RIGHT
                 })

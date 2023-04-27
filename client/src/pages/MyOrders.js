@@ -59,6 +59,9 @@ function MyOrders() {
                             <th scope="col">
                               <p className="fs-5">Status</p>
                             </th>
+                            <th scope="col">
+                              <p className="fs-5">Action</p>
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -111,9 +114,16 @@ function MyOrders() {
                                   <td>
                                     <div style={{ width: "80px" }}>
                                       <p className="medium mb-0">
-                                        {item.status}
+                                      {item.status === 1 ? <>On the Way</> : <></>}
+                                      {item.status === 2 ? <>Delivered</> : <></>}
+                                      {item.status === 3 ? <p className="text-danger">Cancelled</p> : <></>}
+                                      {item.status === 4 ? <p className="text-danger">Returned</p> : <></>}
                                       </p>
                                     </div>
+                                  </td>
+                                  <td>
+                                    {item.status === 1 ? <><button type="button" className="btn btn-outline-warning btn-sm">Cancel</button></> : <></>}
+                                    {item.status === 2 ? <><button type="button" className="btn btn-outline-danger btn-sm">Return</button></> : <></>}
                                   </td>
                                 </tr>
                               );

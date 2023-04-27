@@ -7,12 +7,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { setSecNavbar } from "../utils/tokenHelper";
 import { toast } from "react-toastify";
+import TopPicks from "../components/TopPicks";
 
 function Homepage() {
   const [products, setProducts] = useState([]);
   const [profile, SetProfile] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
+  const [categories,setCategories] = useState([]);
   setSecNavbar(true);
   useEffect(() => {
     try {
@@ -23,8 +25,20 @@ function Homepage() {
     } catch (err) {
       console.log("product fetching failed", err);
     }
+    getCategory();
     profileDetails();
   }, []);
+  const getCategory = () => {
+    try {
+      axios.get("https://localhost:7258/api/Category").then((res) => {
+        console.log("categories from homepage", res.data);
+        setCategories(res.data);
+      });
+  } 
+  catch (error) {
+      console.log("error while fetching categories pagehelper", error);
+  }
+  }
   const profileDetails = () => {
     axios
       .get("https://localhost:7258/profile")
@@ -76,10 +90,22 @@ function Homepage() {
     window.location.reload();
   };
   return (
-    <>
-      <MainNav />
+    < >
+      
       <div className="mt-5">
+      <div className="d-flex flex-row flex-wrap justify-content-around bg-light" >
+        {categories && categories.map((item,index) => {
+          return(
+            <div class="p-4 order-sm-3 bg-white d-flex align-items-center" style={{height: "15vh"}}>{item.name}</div>
+          )
+        })}
+      </div>
+      <div className="">
         <CarouselComponent />
+      </div>
+      <div>
+        {/* <TopPicks/> */}
+      </div>
         <div className="container-fluid">
           <MDBContainer fluid className="my-5 text-center">
             {products.length >= 1 ? (
@@ -91,7 +117,7 @@ function Homepage() {
                 <MDBRow>
                   {products.map((item, index) => {
                     return (
-                      <MDBCol md="8" lg="2" key={index} className="mb-4">
+                      <MDBCol md="4" sm="4" lg="2" key={index} backgroundColor="white" className="mb-4">
                         <MDBRipple
                           rippleColor="dark"
                           rippleTag="div"

@@ -1,6 +1,7 @@
 ﻿using CartProject_1.Data;
 using CartProject_1.Dto;
 using CartProject_1.Models;
+using CartProject_1.Services;
 using CartProject_1.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,12 @@ namespace CartProject_1.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public OrderController(ApplicationDbContext context)
+        private readonly OrderService _orderService;
+
+        public OrderController(ApplicationDbContext context, OrderService orderService)
         {
             _context = context;
+            _orderService = orderService;
         }
 
         [HttpGet]
@@ -283,6 +287,17 @@ namespace CartProject_1.Controllers
             };
             return Ok(result);
 
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(OrderViewDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(OrderViewDto), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateUserOrder(int id,int status)
+        {
+            var result = await _orderService.UpdateUserOrderAsync(id, status);
+            if(result.IsValid)
+                return Ok(result);
+            return BadRequest(result);
         }
     }
 }

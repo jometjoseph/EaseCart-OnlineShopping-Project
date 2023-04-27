@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import {
+  Grid1x2Fill,
   HouseDoorFill,
   ListTask,
   PeopleFill,
-  Table,
   TagFill,
+  ViewStacked,
 } from "react-bootstrap-icons";
 
 function Sidebar() {
@@ -36,7 +37,7 @@ function Sidebar() {
                 to={"/admin"}
                 className="nav-link px-0 align-middle text-white"
               >
-                <Table />{" "}
+                <Grid1x2Fill />{" "}
                 <span className="ms-1 d-none d-sm-inline">Dashboard</span>{" "}
               </Link>
             </li>
@@ -56,6 +57,15 @@ function Sidebar() {
               >
                 <TagFill />{" "}
                 <span className="ms-1 d-none d-sm-inline">Products</span>{" "}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={"/admin/categories"}
+                className="nav-link px-0 align-middle text-white"
+              >
+                <ViewStacked />{" "}
+                <span className="ms-1 d-none d-sm-inline">Category</span>{" "}
               </Link>
             </li>
             <li>

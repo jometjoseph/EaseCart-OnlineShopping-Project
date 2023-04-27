@@ -13,6 +13,8 @@ import MyOrders from "./pages/MyOrders";
 import Products from "./pages/admin/Products";
 import Orders from "./pages/admin/Orders";
 import Customers from "./pages/admin/Customers";
+import Category from "./pages/admin/Category";
+import PageNotFound from "./components/PageNotFound";
 
 const routes = createBrowserRouter([
     {
@@ -73,8 +75,16 @@ const routes = createBrowserRouter([
             {
                 path: "/admin/customers",
                 element: <Customers/>
+            },
+            {
+                path: "/admin/categories",
+                element: <Category/>
             }
         ]
+    },
+    {
+        path: "/notfound",
+        element: <PageNotFound/>
     }
 ])
 

@@ -34,8 +34,12 @@ namespace CartProject_1.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(CategoryViewDto[]), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(CategoryViewDto[]), StatusCodes.Status400BadRequest)]
-        public async Task<CategoryViewDto> CreateCategoryAsync(CategoryCreateDto dto)
+        public async Task<IActionResult> CreateCategoryAsync(CategoryCreateDto dto)
         {
+            if(dto.Name == "string" || dto.Description == "string")
+            {
+                return BadRequest("Invalid values");
+            }
             var category = new Category
             {
                 Name = dto.Name,
@@ -44,11 +48,11 @@ namespace CartProject_1.Controllers
              _db.Categories.Add(category);
             _db.SaveChanges();
 
-            return new CategoryViewDto
+            return Ok(new CategoryViewDto
             {
                 Id = category.Id,
                 Name = category.Name,
-            };
+            });
         }
 
         [HttpDelete]
