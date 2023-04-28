@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import "./Product.css";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Cart4, Link } from "react-bootstrap-icons";
 
 function Product() {
   const navigate = useNavigate();
   const [product, setProduct] = useState("");
   const { id } = useParams();
+  const [user,setUser] = useState("");
   
   useEffect(() => {
     console.log("productid is ", id);
@@ -18,18 +21,51 @@ function Product() {
           setProduct(res.data.result);
           console.log("product", product);
           console.log("product name", product.name);
+          profileDetails();
         });
     } catch (err) {
       console.log("error is", err);
     }
   }, []);
 
+  const profileDetails = () => {
+    axios
+      .get("https://localhost:7258/profile")
+      .then((res) => {
+        console.log("profile ", res.data);
+        setUser(res.data);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  };
+
+  const AddToCart = async (prodId,uId) => {
+    try {
+      await axios
+        .post("https://localhost:7258/api/Cart", {
+          productId: prodId,
+          applicationUserId: uId
+        })
+        .then((res) => {
+          console.log("result from add to cart", res);
+          toast.success("Product added to your cart", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+          navigate("/cart");
+        });
+    } catch (error) {
+      console.log("eror from add to cart", error);
+    }
+  };
+
+  
   const backToHome = () => {
     navigate("/home");
   };
   return (
     <>
-      <section className="py-5 mt-3">
+      <section className="py-5 mt-4 pt-5">
         <div className="container">
           <div className="row gx-5">
             <aside className="col-lg-6">
@@ -71,7 +107,7 @@ function Product() {
                   </div>
                   <span className="text-muted">
                     <i className="fas fa-shopping-basket fa-sm mx-1"></i>
-                    {product.quantity} orders
+                    {product.quantity} orders 
                   </span>
                   <span className="text-success ms-2">In stock</span>
                 </div>
@@ -85,28 +121,21 @@ function Product() {
 
                 <hr />
                 <div className="row mb-4">
-                  {/* <div className="col-md-4 col-6">
-              <label className="mb-2">Size</label>
-              <select className="form-select border border-secondary" style={{height: "35px"}}>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-              </select>
-            </div> */}
 
                   <div className="col-md-4 col-6 mb-3">
                     
                   </div>
                 </div>
                 {/* <a href="#" className="btn btn-warning shadow-0"> Buy now </a> */}
-                <a href="#c" className="btn btn-primary shadow-0">
+                
+                <button href="#c" className="btn btn-primary shadow-0" onClick={() => {AddToCart(product.id,user.id)}}>
                   {" "}
-                  <i className="me-1 fa fa-shopping-basket"></i> Add to cart{" "}
-                </a>
+                  <Cart4/> Add to cart{" "}
+                </button>
                 <button
                   type="button"
                   onClick={backToHome}
-                  className="btn btn-light border border-secondary py-2 icon-hover px-3"
+                  className="btn btn-secondary border border-secondary py-2 icon-hover px-3"
                 >
                   {" "}
                   Back to Home{" "}

@@ -1,6 +1,7 @@
 import Carousel from "react-bootstrap/Carousel";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-bootstrap-icons";
 
 function TopPicks() {
     const [topProducts,setTopProducts] = useState([]);
@@ -15,40 +16,49 @@ function TopPicks() {
         }
       }, []);
   return (
-    <Carousel fade>
-      <Carousel.Item>
+    <div className="bg-white">
+    <Carousel fade className="bg-white">
+      <Carousel.Item variant="primary">
         <div className="">
           <section style={{ backgroundColor: "#eee" }}>
-            <div class="text-center container py-5">
-              <h4 class="mt-4 mb-5">
-                <strong>Top Picks</strong>
+            <div className="text-center container py-5">
+              <h4 className="mt-4 mb-5">
+                <strong>Top Picks for you</strong>
               </h4>
-
-              <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4">
-                  <div class="card">
+              <div className="row">
+                {topProducts && topProducts.filter((item,index) => index>=0 && index < 4 ).map((item,index) => {
+                  return(
+                    <div className="col-lg-3 col-md-6 mb-4" key={index}>
+                      
+                  <div className="card">
                     <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                      className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light"
                     >
+                     <a
+                            href={`/product/${item.id}`}
+                            className="text-decoration-none"
+                          >
                         <div className="ratio ratio-4x3">
+                        
                       <img
-                        src={topProducts[0].imageUrl}
-                        class="w-100"
+                        src={item.imageUrl}
+                        className="w-100"
                         alt="hsh"
-                      />
+                      /> 
                       </div>
+                      </a>
                       <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
+                        <div className="mask">
+                          <div className="d-flex justify-content-start align-items-end h-100">
                             <h5>
-                              <span class="badge bg-primary ms-2">New</span>
+                              <span className="badge bg-primary ms-2">New</span>
                             </h5>
                           </div>
                         </div>
-                        <div class="hover-overlay">
+                        <div className="hover-overlay">
                           <div
-                            class="mask"
+                            className="mask"
                             style={{
                               backgroundColor: "rgba(251, 251, 251, 0.15)",
                             }}
@@ -56,93 +66,18 @@ function TopPicks() {
                         </div>
                       </a>
                     </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[0].name}</h5>
+                    <div className="card-body">
+                    
+                      <a href="s" className="text-reset text-decoration-none">
+                        <p className="card-title mb-3 text-truncate">{item.name}</p>
                       </a>
-                      <h6 class="mb-3">${topProducts[0].price}</h6>
+                      <h6 className="mb-3">${item.price}</h6>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"
-                    >
-                        <div className="ratio ratio-4x3">
-                      <img
-                        src={topProducts[1].imageUrl}
-                        class="w-100"
-                        alt="hsh"
-                      />
-                      </div>
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-primary ms-2">New</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div
-                            class="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[1].name}</h5>
-                      </a>
-                      <h6 class="mb-3">${topProducts[1].price}</h6>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"
-                    >
-                        <div className="ratio ratio-4x3">
-                      <img
-                        src={topProducts[2].imageUrl}
-                        class="w-100"
-                        alt="hsh"
-                      />
-                      </div>
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-primary ms-2">New</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div
-                            class="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[2].name}</h5>
-                      </a>
-                      <h6 class="mb-3">${topProducts[2].price}</h6>
-                    </div>
-                  </div>
-                </div>
+                  )
+                })}
+                
               </div>
             </div>
           </section>
@@ -151,36 +86,42 @@ function TopPicks() {
       <Carousel.Item>
       <div className="">
           <section style={{ backgroundColor: "#eee" }}>
-            <div class="text-center container py-5">
-              <h4 class="mt-4 mb-5">
-                <strong>Top Picks</strong>
+            <div className="text-center container py-5">
+              <h4 className="mt-4 mb-5">
+                <strong>Top Picks for you</strong>
               </h4>
-
-              <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4">
-                  <div class="card">
+              <div className="row">
+                {topProducts && topProducts.filter((item,index) => index>=4 && index < 8 ).map((item,index) => {
+                  return(
+                    <div className="col-lg-3 col-md-6 mb-4" key={index}>
+                  <div className="card">
                     <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                      className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light"
                     >
+                      <a
+                            href={`/product/${item.id}`}
+                            className="text-decoration-none"
+                          >
                         <div className="ratio ratio-4x3">
                       <img
-                        src={topProducts[3].imageUrl}
-                        class="w-100"
+                        src={item.imageUrl}
+                        className="w-100"
                         alt="hsh"
                       />
                       </div>
+                      </a>
                       <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
+                        <div className="mask">
+                          <div className="d-flex justify-content-start align-items-end h-100">
                             <h5>
-                              <span class="badge bg-primary ms-2">New</span>
+                              <span className="badge bg-success ms-2">Back to stock</span>
                             </h5>
                           </div>
                         </div>
-                        <div class="hover-overlay">
+                        <div className="hover-overlay">
                           <div
-                            class="mask"
+                            className="mask"
                             style={{
                               backgroundColor: "rgba(251, 251, 251, 0.15)",
                             }}
@@ -188,96 +129,17 @@ function TopPicks() {
                         </div>
                       </a>
                     </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[3].name}</h5>
+                    <div className="card-body">
+                      <a href="s" className="text-reset text-decoration-none">
+                        <p className="card-title mb-3 text-truncate">{item.name}</p>
                       </a>
-                      
-                      <h6 class="mb-3">${topProducts[3].price}</h6>
+                      <h6 className="mb-3">${item.price}</h6>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"
-                    >
-                        <div className="ratio ratio-4x3">
-                      <img
-                        src={topProducts[4].imageUrl}
-                        class="w-100"
-                        alt="hsh"
-                      />
-                      </div>
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-primary ms-2">New</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div
-                            class="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[4].name}</h5>
-                      </a>
-                      
-                      <h6 class="mb-3">${topProducts[4].price}</h6>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"
-                    >
-                        <div className="ratio ratio-4x3">
-                      <img
-                        src={topProducts[5].imageUrl}
-                        class="w-100"
-                        alt="hsh"
-                      />
-                      </div>
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-primary ms-2">New</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div
-                            class="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[5].name}</h5>
-                      </a>
-                     
-                      <h6 class="mb-3">${topProducts[5].price}</h6>
-                    </div>
-                  </div>
-                </div>
+                  )
+                })}
+                
               </div>
             </div>
           </section>
@@ -286,36 +148,42 @@ function TopPicks() {
       <Carousel.Item>
       <div className="">
           <section style={{ backgroundColor: "#eee" }}>
-            <div class="text-center container py-5">
-              <h4 class="mt-4 mb-5">
-                <strong>Top Picks</strong>
+            <div className="text-center container py-5">
+              <h4 className="mt-4 mb-5">
+                <strong>Top Picks for you</strong>
               </h4>
-
-              <div class="row">
-                <div class="col-lg-4 col-md-12 mb-4">
-                  <div class="card">
+              <div className="row">
+                {topProducts && topProducts.filter((item,index) => index>=8 && index < 12 ).map((item,index) => {
+                  return(
+                    <div className="col-lg-3 col-md-6 mb-4" key={index}>
+                  <div className="card">
                     <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                      className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light"
                     >
+                      <a
+                            href={`/product/${item.id}`}
+                            className="text-decoration-none"
+                          >
                         <div className="ratio ratio-4x3">
                       <img
-                        src={topProducts[6].imageUrl}
-                        class="w-100"
+                        src={item.imageUrl}
+                        className="w-100"
                         alt="hsh"
                       />
                       </div>
+                      </a>
                       <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
+                        <div className="mask">
+                          <div className="d-flex justify-content-start align-items-end h-100">
                             <h5>
-                              <span class="badge bg-primary ms-2">New</span>
+                              <span className="badge bg-warning ms-2">discounts</span>
                             </h5>
                           </div>
                         </div>
-                        <div class="hover-overlay">
+                        <div className="hover-overlay">
                           <div
-                            class="mask"
+                            className="mask"
                             style={{
                               backgroundColor: "rgba(251, 251, 251, 0.15)",
                             }}
@@ -323,102 +191,24 @@ function TopPicks() {
                         </div>
                       </a>
                     </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[6].name}</h5>
+                    <div className="card-body">
+                      <a href="s" className="text-reset text-decoration-none">
+                        <p className="card-title mb-3 text-truncate">{item.name}</p>
                       </a>
-                      
-                      <h6 class="mb-3">${topProducts[6].price}</h6>
+                      <h6 className="mb-3">${item.price}</h6>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"
-                    >
-                        <div className="ratio ratio-4x3">
-                      <img
-                        src={topProducts[7].imageUrl}
-                        class="w-100"
-                        alt="hsh"
-                      />
-                      </div>
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-primary ms-2">New</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div
-                            class="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[7].name}</h5>
-                      </a>
-                     
-                      <h6 class="mb-3">${topProducts[7].price}</h6>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                  <div class="card">
-                    <div
-                      class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"
-                    >
-                    <div className="ratio ratio-4x3">
-                      <img
-                        src={topProducts[8].imageUrl}
-                        class="w-100"
-                        alt="hsh"
-                      />
-                      </div>
-                      <a href="#!">
-                        <div class="mask">
-                          <div class="d-flex justify-content-start align-items-end h-100">
-                            <h5>
-                              <span class="badge bg-primary ms-2">New</span>
-                            </h5>
-                          </div>
-                        </div>
-                        <div class="hover-overlay">
-                          <div
-                            class="mask"
-                            style={{
-                              backgroundColor: "rgba(251, 251, 251, 0.15)",
-                            }}
-                          ></div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <a href="s" class="text-reset">
-                        <h5 class="card-title mb-3">{topProducts[8].name}</h5>
-                      </a>
-                      
-                      <h6 class="mb-3">${topProducts[8].price}</h6>
-                    </div>
-                  </div>
-                </div>
+                  )
+                })}
+                
               </div>
             </div>
           </section>
         </div>
       </Carousel.Item>
     </Carousel>
+    </div>
   );
 }
 

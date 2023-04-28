@@ -4,17 +4,18 @@ import CarouselComponent from "../components/CarouselComponent";
 import React, { useEffect, useState } from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBRipple } from "mdb-react-ui-kit";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setSecNavbar } from "../utils/tokenHelper";
 import { toast } from "react-toastify";
 import TopPicks from "../components/TopPicks";
+import SecondNavbar from "../components/SecondNavbar";
 
 function Homepage() {
   const [products, setProducts] = useState([]);
   const [profile, SetProfile] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-  const [categories,setCategories] = useState([]);
+  const navigate = useNavigate();
   setSecNavbar(true);
   useEffect(() => {
     try {
@@ -25,20 +26,8 @@ function Homepage() {
     } catch (err) {
       console.log("product fetching failed", err);
     }
-    getCategory();
     profileDetails();
   }, []);
-  const getCategory = () => {
-    try {
-      axios.get("https://localhost:7258/api/Category").then((res) => {
-        console.log("categories from homepage", res.data);
-        setCategories(res.data);
-      });
-  } 
-  catch (error) {
-      console.log("error while fetching categories pagehelper", error);
-  }
-  }
   const profileDetails = () => {
     axios
       .get("https://localhost:7258/profile")
@@ -63,6 +52,7 @@ function Homepage() {
             position: toast.POSITION.TOP_CENTER,
           });
         });
+        navigate("/cart");
     } catch (error) {
       console.log("eror from add to cart", error);
     }
@@ -94,17 +84,13 @@ function Homepage() {
       
       <div className="mt-5">
       <div className="d-flex flex-row flex-wrap justify-content-around bg-light" >
-        {categories && categories.map((item,index) => {
-          return(
-            <div class="p-4 order-sm-3 bg-white d-flex align-items-center" style={{height: "15vh"}}>{item.name}</div>
-          )
-        })}
+      <SecondNavbar/>                                                                {/* SecondNavbar component  */}
       </div>
       <div className="">
-        <CarouselComponent />
+        <CarouselComponent />                                                        {/* Carousel component      */}
       </div>
-      <div>
-        {/* <TopPicks/> */}
+      <div className="">
+        <TopPicks/>                                                                  {/* TopPicks component      */}
       </div>
         <div className="container-fluid">
           <MDBContainer fluid className="my-5 text-center">
@@ -112,12 +98,12 @@ function Homepage() {
               <>
                 <hr></hr>
                 <h4 className="mt-4 mb-5">
-                  <strong>Top Picks for you</strong>
+                  <strong>Best Sellers</strong>
                 </h4>
                 <MDBRow>
                   {products.map((item, index) => {
                     return (
-                      <MDBCol md="4" sm="4" lg="2" key={index} backgroundColor="white" className="mb-4">
+                      <MDBCol md="4" sm="4" lg="2" key={index} backgroundcolor="white" className="mb-4">
                         <MDBRipple
                           rippleColor="dark"
                           rippleTag="div"

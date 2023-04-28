@@ -3,9 +3,9 @@ import slider1 from "../images/slider1";
 
 function CarouselComponent() {
   return (
-    <Carousel fade>
-      <Carousel.Item>
-        <div className="" style={{ height: "300px" }}>
+    <Carousel fade >
+      <Carousel.Item >
+        <div className="" style={{ height: "400px" }}>
           <img
             className="d-block w-100"
             src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(56).webp"
@@ -19,7 +19,7 @@ function CarouselComponent() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="" style={{ height: "300px" }}>
+        <div className="" style={{ height: "400px" }}>
           <img
             className="d-block w-100"
             src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(38).webp"
@@ -33,7 +33,7 @@ function CarouselComponent() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="" style={{ height: "300px" }}>
+        <div className="" style={{ height: "400px" }}>
           <img
             className="d-block w-100"
             src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(36).webp"

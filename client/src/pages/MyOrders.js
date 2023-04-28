@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
@@ -17,6 +18,46 @@ function MyOrders() {
       console.log("Error while fetching", err);
     }
   }, []);
+
+  const cancelOrder = async (id,item) => {
+    // const status = 2;
+    if (!window.confirm("Are you sure to Cancel the purchase of `"+item+"` ?")) {
+      console.log("cancelled the action");
+      return;
+    }
+    else { 
+    try{
+      await axios.put(`https://localhost:7258/api/Order/${id}`)
+      .then(res => {
+        console.log("result of cancelling order",res);
+        toast.success("Order cancelled", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+      })
+    }
+    catch(err){
+      console.log("error while canceling order",err);
+    }
+  }
+  }
+
+  const returnProduct = async (id,item) =>{
+    if (!window.confirm("Are you sure to Return the `"+item+" ` item you received ?")) {
+      console.log("cancelled the action");
+      return;
+    }
+    else { 
+    try{
+      await axios.put(`https://localhost:7258/api/Order/${id}`)
+      .then(res => {
+        console.log("result of returning product",res)
+      })
+    }
+    catch(err){
+      console.log("error while returning product",err);
+    }
+  }
+  }
 
   const backToHome = () => {
     navigate("/home");
@@ -122,8 +163,8 @@ function MyOrders() {
                                     </div>
                                   </td>
                                   <td>
-                                    {item.status === 1 ? <><button type="button" className="btn btn-outline-warning btn-sm">Cancel</button></> : <></>}
-                                    {item.status === 2 ? <><button type="button" className="btn btn-outline-danger btn-sm">Return</button></> : <></>}
+                                    {item.status === 1 ? <><button type="button" className="btn btn-outline-warning btn-sm" onClick={() =>{cancelOrder(item.id,item.product.name)}}>Cancel</button></> : <></>}
+                                    {item.status === 2 ? <><button type="button" className="btn btn-outline-danger btn-sm" onClick={() => {returnProduct(item.id,item.product.name)}}>Return</button></> : <></>}
                                   </td>
                                 </tr>
                               );

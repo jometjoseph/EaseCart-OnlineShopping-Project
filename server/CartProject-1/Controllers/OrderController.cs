@@ -292,9 +292,10 @@ namespace CartProject_1.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(OrderViewDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(OrderViewDto), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateUserOrder(int id,int status)
+        public async Task<IActionResult> UpdateUserOrder(int id)
         {
-            var result = await _orderService.UpdateUserOrderAsync(id, status);
+            var role = User.FindFirstValue(ClaimTypes.Role);
+            var result = await _orderService.UpdateUserOrderAsync(id, role);
             if(result.IsValid)
                 return Ok(result);
             return BadRequest(result);
