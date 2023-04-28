@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className='App Container-fluid'>
+    <div className='App Container-fluid bg-white'>
               <div className="d-flex flex-column">
         <MainNav/>
       <ToastContainer/>

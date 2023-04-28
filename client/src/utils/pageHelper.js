@@ -29,3 +29,17 @@ export const getProductCategories = () =>{
     }
     return result;
 }
+
+export  const getProfileDetails = () => {
+    axios
+      .get("https://localhost:7258/profile")
+      .then((res) => {
+        console.log("profile pagehelper", res.data.id);
+        return res.data.id;
+      })
+      .catch((err) => {
+        console.log("error", err);
+        return null;
+      });
+    
+  };

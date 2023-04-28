@@ -33,7 +33,6 @@ function Order() {
                         toast.warning('Something went wrong', {
                             position: toast.POSITION.TOP_RIGHT
                         });
-
                     }
                     setCartProducts(res.data);
                     const filteredItems = res.data;

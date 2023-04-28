@@ -13,7 +13,7 @@ namespace CartProject_1.Services
             _context = context;
         }
 
-        public async Task<ServiceResponse<OrderViewDto>> UpdateUserOrderAsync(int id, int status)
+        public async Task<ServiceResponse<OrderViewDto>> UpdateUserOrderAsync(int id, string role)
         {
             var result = new ServiceResponse<OrderViewDto>();
 
@@ -23,23 +23,39 @@ namespace CartProject_1.Services
                 result.AddError("Order", "Order doesn't exist");
                 return result;
             }
-            if(order.Status == OrderStatus.OntheWay && status == 2)
+            if(role == null)
             {
-                order.Status = OrderStatus.Delivered;
+                result.AddError("role", "check whether the user is authentic");
             }
-            else if(order.Status == OrderStatus.OntheWay && status == 3)
+            else if(role == "User")
             {
-                order.Status = OrderStatus.Cancelled;
-            }
-            else if(order.Status == OrderStatus.Delivered && status == 4)
-            {
-                order.Status = OrderStatus.Returned;
+                if (order.Status == OrderStatus.OntheWay)
+                {
+                    order.Status = OrderStatus.Cancelled;
+                }
+                else if (order.Status == OrderStatus.Delivered)
+                {
+                    order.Status = OrderStatus.Returned;
+                }
+                else
+                {
+                    order.Status = OrderStatus.OntheWay;
+                }
+
             }
             else
             {
-                order.Status=OrderStatus.OntheWay;
-            }
+                if (order.Status == OrderStatus.OntheWay)
+                {
+                    order.Status = OrderStatus.Delivered;
+                }
+                else
+                {
+                    order.Status = OrderStatus.OntheWay;
+                }
 
+            }
+            
             await _context.SaveChangesAsync();
 
             result.Result = new OrderViewDto()
