@@ -194,6 +194,9 @@ function Footer() {
       </div>
     </MDBFooter>
     </>}
+    {!token && <>
+    <div></div>
+    </>}
     </>
   );
 }

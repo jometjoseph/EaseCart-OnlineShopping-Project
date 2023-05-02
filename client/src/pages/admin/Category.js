@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CategoryCreate from "../../components/admin/CategoryCreate";
 import Button from "react-bootstrap/esm/Button";
+import React from 'react'
+import Swal from 'sweetalert2'
 
 function Category() {
   const [productCategory, setProductCategory] = useState([]);
@@ -24,6 +26,44 @@ function Category() {
         console.log("user details fetching failed", err);
       }
   }
+  const deleteAlert = async (id) => {
+		Swal.fire({
+			title: 'Do you want to proceed with this action? (hint: Deleting this category can cause many alterations in database)',
+			showConfirmButton: true,
+			showCancelButton: true,
+			confirmButtonText: "OK",
+			cancelButtonText: "Cancel",
+			icon: 'warning'
+		}
+		).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+
+				Swal.fire('Continue with delete process', '', 'success').then(res => {
+          if(res.isConfirmed){
+            try{
+           axios
+            .delete(`https://localhost:7258/api/Category/${id}`)
+            .then((res) => {
+              console.log("deleted category successfully", res);
+              toast.success("Deleted category and products ", {
+                position: toast.POSITION.TOP_CENTER,
+              });
+              getCategory();
+            })
+          }
+          catch(err){
+              console.log("deletion failed", err);
+          }
+          }
+        })
+
+			} 
+      else
+				Swal.fire(' Process Cancelled', '', 'error')
+
+		})
+	}
   const deleteCategory = async (id) => {
     console.log("product to be del", id);
       if (window.confirm("Do you want to proceed with this action? (hint: Deleting this category can cause many alterations in database)")) {
@@ -59,6 +99,7 @@ function Category() {
         }
       }
   }
+
   const addCategory = () => {
     setAddNewCategory(true)
   }
@@ -111,7 +152,7 @@ function Category() {
                                       type="button"
                                       className="btn btn-outline-danger"
                                       onClick={() => {
-                                        deleteCategory(item.id);
+                                        deleteAlert(item.id);
                                       }}
                                     >
                                       <TrashFill />

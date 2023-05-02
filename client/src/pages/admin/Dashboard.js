@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MainNav from "../../components/MainNav";
 
 function Dashboard() {
   const [products, setProducts] = useState([]);
@@ -39,6 +40,7 @@ function Dashboard() {
 
   return (
     <>
+    <MainNav/>
       <div className="col py-3 mt-4">
         <h1>Admin Dashboard</h1>
         <div className="card">

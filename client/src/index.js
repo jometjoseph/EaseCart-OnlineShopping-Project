@@ -10,13 +10,17 @@ import Footer from './components/Footer';
 import TokenInterceptor from './utils/TokenInterceptor';
 import { RouterProvider, Routes } from 'react-router-dom';
 import routes from './routes';
+import { Provider } from 'react-redux';
+import { store } from './components/Redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
   {/* <NavigationBar/> */}
+  <Provider store={store}>
   <RouterProvider router={routes}>
         </RouterProvider>
+  </Provider>      
   </>
 );
 

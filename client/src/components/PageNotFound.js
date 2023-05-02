@@ -12,7 +12,7 @@ function PageNotFound(){
        </div>
         </div>
         <h2 className='text-center'><i>Page Not Found</i></h2>
-                 <div className="fs-5 text-center">Go back to Homepage</div>
+                 <div className="fs-5 text-center"></div>
                  <div className=" text-center p-2 ">
                 {isAdmin && <>
                     <Link to={"/admin"} className="btn btn-primary btn-lg">Back to Home page</Link>

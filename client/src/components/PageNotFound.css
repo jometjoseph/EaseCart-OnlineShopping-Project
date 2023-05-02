@@ -15,7 +15,7 @@
     right: 0;
     width: 2px;
     height: 100%;
-    background: #4FC3F7;
+    background: #fa0c00;;
     animation: cursorBlink 0.8s steps(3) infinite;
 }
 
@@ -39,7 +39,7 @@
 
 .typing h2 {
     position: relative;
-    color: #4FC3F7;
+    color: #fa0c00;
     letter-spacing: 4px;
     font-size: 4rem;
     overflow: hidden;
