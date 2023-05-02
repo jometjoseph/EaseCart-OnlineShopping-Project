@@ -195,7 +195,6 @@ namespace CartProject_1.Controllers
                 
         }
 
-
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ProductCreateDto), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProductCreateDto), StatusCodes.Status404NotFound)]

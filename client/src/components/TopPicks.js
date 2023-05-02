@@ -39,7 +39,7 @@ function TopPicks() {
                             href={`/product/${item.id}`}
                             className="text-decoration-none"
                           >
-                        <div className="ratio ratio-4x3">
+                        <div className="ratio ratio-4x3 mt-2">
                         
                       <img
                         src={item.imageUrl}
@@ -103,7 +103,7 @@ function TopPicks() {
                             href={`/product/${item.id}`}
                             className="text-decoration-none"
                           >
-                        <div className="ratio ratio-4x3">
+                        <div className="ratio ratio-4x3 mt-2">
                       <img
                         src={item.imageUrl}
                         className="w-100"
@@ -165,7 +165,7 @@ function TopPicks() {
                             href={`/product/${item.id}`}
                             className="text-decoration-none"
                           >
-                        <div className="ratio ratio-4x3">
+                        <div className="ratio ratio-4x3 mt-2">
                       <img
                         src={item.imageUrl}
                         className="w-100"

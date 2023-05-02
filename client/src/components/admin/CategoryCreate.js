@@ -1,6 +1,7 @@
 import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 function CategoryCreate() {
   const {
@@ -15,7 +16,11 @@ function CategoryCreate() {
     try{
         axios.post("https://localhost:7258/api/Category",data)
         .then(res => {
-            console.log("result after adding category",res)
+            console.log("result after adding category",res);
+            toast.success("Category created successfully", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+            window.location.reload();
         })
     }
     catch(error){

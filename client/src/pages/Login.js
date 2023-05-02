@@ -7,7 +7,10 @@ import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import login from '../images/login.jpg';
 import { toast } from 'react-toastify';
+import easecartlogo from '../images/easecartlogo.png';
 import jwt_decode from "jwt-decode";
+import MainNav from '../components/MainNav';
+import Footer from '../components/Footer';
 
 // const axios = require('axios');
 
@@ -63,6 +66,7 @@ function Login() {
 }
   return (
     <div>
+      <MainNav/>
       {/* <ToastContainer /> */}
       { error &&
       // <ToastContainer />
@@ -72,16 +76,15 @@ function Login() {
         <div className="container py-4">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-xl-9">
-              <div className="card rounded-4 text-black">
-                <div className="row g-0">
+              <div className="card rounded-4 text-black ">
+                <div className="row g-0 d-flex justify-content-center align-items-center">
                   <div className="col-lg-5 d-flex justify-content-center align-items-center"> 
                     <div className="card-body p-md-5 mx-md-4">
-                      <div className="text-center text-dark">
-                        <h4 className="mt-1 mb-5 pb-1">Shopping Cart</h4>
+                      <div className="text-center text-dark mb-2">
+                        <img src={easecartlogo} alt="easecart" style={{height: "60px", width: "160px"}}></img><br></br>
                       </div>
                       <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className='text-center text-dark mb-5'>Please login to your account</div>
-
+                        <div className='text-center text-dark mb-5'><i>Please login to your account</i></div>
                         <div className="form-outline mb-3">
                           <input type="text" id="form2Example11" className="form-control"
                             placeholder="username"
@@ -116,6 +119,7 @@ function Login() {
           </div>
         </div>
       </section>
+      <Footer/>
     </div>
   )
 }
