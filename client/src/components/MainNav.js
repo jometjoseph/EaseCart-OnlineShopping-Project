@@ -9,9 +9,7 @@ import {  getToken, isAdministrator, userName } from '../utils/tokenHelper';
 import {   Cart3, CartFill, HouseDoorFill, ListCheck, PersonCheckFill, PersonCircle, Power, Search } from 'react-bootstrap-icons';
 import easecartlogo from '../images/easecartlogo.png';
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSearchKey } from './Redux/cartslice';
+import { useEffect, useState } from 'react';
 
 function MainNav(props) {
     const expand = 'sm';
@@ -21,10 +19,11 @@ function MainNav(props) {
     const isAdmin = isAdministrator();
     const navigate = useNavigate();
     const [searchBox,setSearchBox] = useState(false);
-    const dispatch = useDispatch();
-    var result = useSelector(state => state.easeCart.searchKey);
     const [searchText, setSearchText] = useState('');
 
+    useEffect (() => {
+        setSearchBox(props.setSearchBox);
+    },[]);
   const handleChange = (event) => {
     setSearchText(event.target.value);
     props.onSearch(event.target.value);
@@ -69,13 +68,16 @@ function MainNav(props) {
                                     /> */}
                                     {/* <Button variant="outline-dark"> <Search/> </Button> */}
                                     {/* </> : <> */}
-                                    <Form.Control
+                                    {searchBox && <>
+                                        <Form.Control
                                         type="search"
                                         placeholder="🔍Search"
                                         className="me-2"
                                         aria-label="Search"
                                         onChange={(e) => {handleChange(e)}}
                                     />
+                                    </>}
+                                    
                                     
                                     {/* <Button variant="outline-dark" onClick={() => {}}> <Search/> </Button> */}
                                     {/* </>} */}
