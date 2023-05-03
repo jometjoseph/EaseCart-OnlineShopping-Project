@@ -43,7 +43,9 @@ function Category() {
           if(res.isConfirmed){
             try{
            axios
-            .delete(`https://localhost:7258/api/Category/${id}`)
+            .delete(`https://localhost:7258/api/Category/`,{params: {
+              id: id
+            }})
             .then((res) => {
               console.log("deleted category successfully", res);
               toast.success("Deleted category and products ", {
@@ -64,41 +66,41 @@ function Category() {
 
 		})
 	}
-  const deleteCategory = async (id) => {
-    console.log("product to be del", id);
-      if (window.confirm("Do you want to proceed with this action? (hint: Deleting this category can cause many alterations in database)")) {
-        console.log("continuing to delete category");
-        toast.warning("Deleting a category can cause deletion of all the products belongong to that category ", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        await continueDelete(id);
-      }
-      else{
-        return;
-      }
+  // const deleteCategory = async (id) => {
+  //   console.log("product to be del", id);
+  //     if (window.confirm("Do you want to proceed with this action? (hint: Deleting this category can cause many alterations in database)")) {
+  //       console.log("continuing to delete category");
+  //       toast.warning("Deleting a category can cause deletion of all the products belongong to that category ", {
+  //           position: toast.POSITION.TOP_CENTER,
+  //         });
+  //       await continueDelete(id);
+  //     }
+  //     else{
+  //       return;
+  //     }
     
-  };
-  const continueDelete = async (id) => {
-    if (!window.confirm("Are you sure to delete this Category?")) {
-        console.log("deleting category");
-        return;
-      } else {
-        try{
-            await axios
-          .delete(`https://localhost:7258/api/Category/${id}`)
-          .then((res) => {
-            console.log("deleted category successfully", res);
-            toast.success("Deleted category and products ", {
-              position: toast.POSITION.TOP_CENTER,
-            });
-            getCategory();
-          })
-        }
-        catch(err){
-            console.log("deletion failed", err);
-        }
-      }
-  }
+  // };
+  // const continueDelete = async (id) => {
+  //   if (!window.confirm("Are you sure to delete this Category?")) {
+  //       console.log("deleting category");
+  //       return;
+  //     } else {
+  //       try{
+  //           await axios
+  //         .delete(`https://localhost:7258/api/Category/${id}`)
+  //         .then((res) => {
+  //           console.log("deleted category successfully", res);
+  //           toast.success("Deleted category and products ", {
+  //             position: toast.POSITION.TOP_CENTER,
+  //           });
+  //           getCategory();
+  //         })
+  //       }
+  //       catch(err){
+  //           console.log("deletion failed", err);
+  //       }
+  //     }
+  // }
 
   const addCategory = () => {
     setAddNewCategory(true)

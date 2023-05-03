@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Cart4, Link } from "react-bootstrap-icons";
+import StarRating from 'react-bootstrap-star-rating';
 
 function Product() {
   const navigate = useNavigate();
@@ -98,16 +99,14 @@ function Product() {
                 </h4>
                 <div className="d-flex flex-row my-3">
                   <div className="text-warning mb-1 me-2">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fas fa-star-half-alt"></i>
+                  
                     <span className="ms-1">{product.rating}</span>
                   </div>
                   <span className="text-muted">
                     <i className="fas fa-shopping-basket fa-sm mx-1"></i>
-                    {product.quantity} orders 
+                    {product.quantity <= 5 && product.quantity >=1 ?  <span className="fw-bold text-danger">only a few stocks left</span> : <></>}
+                            {product.quantity < 1 ?  <span className="fw-bold text-danger">Out of stocks</span> : <></>}
+                            {product.quantity > 5 ?  <span className="fw-bold ">{product.quantity}</span> : <></>}
                   </span>
                   <span className="text-success ms-2">In stock</span>
                 </div>

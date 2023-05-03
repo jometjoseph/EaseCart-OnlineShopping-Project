@@ -6,6 +6,7 @@ import { TrashFill } from 'react-bootstrap-icons';
 import { setSecNavbar } from '../utils/tokenHelper';
 import CartSum from '../components/CartSum';
 import { toast } from 'react-toastify';
+import {  errorAlert } from '../components/SweetAlert';
 
 function Cart() {
   const navigate = useNavigate();
@@ -64,25 +65,48 @@ function Cart() {
   }
 
   const deleteCartItems = async (id) => {
-    console.log("cart id", id);
-    console.log("type of cart id", typeof (id));
-    if (!window.confirm('Are you sure to delete this record?')) {
-      console.log("deleting");
-      return;
-    }
-    else {
-      await axios.delete(`https://localhost:7258/api/Cart/${id}`)
-        .then((res) => {
-          console.log("deleted item successfully", res);
-          toast.success('Product removed from your cart', {
-            position: toast.POSITION.TOP_CENTER
-          });
-          getCartItems();
+    const erralrt = errorAlert("Do you want to remove this product from your cart","warning","Product Removed from your cart");
+    erralrt.then(res => {
+    if(res){
+        console.log("cart id", id);
+        try{
+          axios.delete(`https://localhost:7258/api/Cart/${id}`)
+          .then((res) => {
+            console.log("deleted item successfully", res);
+            // toast.success('Product removed from your cart', {
+            //   position: toast.POSITION.TOP_CENTER
+            // });
+            getCartItems();
         })
-        .catch((err) => {
-          console.log("deletion failed", err);
-        })
-    }
+      }
+      catch  (err) {
+          console.log("error while deleting",err)
+        }
+      }
+      else{
+        return;
+      }
+    })
+    
+
+    
+  //   if (!window.confirm('Are you sure to delete this record?')) {
+  //     console.log("deleting");
+  //     return;
+  //   }
+  //   else {
+  //     await axios.delete(`https://localhost:7258/api/Cart/${id}`)
+  //       .then((res) => {
+  //         console.log("deleted item successfully", res);
+  //         toast.success('Product removed from your cart', {
+  //           position: toast.POSITION.TOP_CENTER
+  //         });
+  //         getCartItems();
+  //       })
+  //       .catch((err) => {
+  //         console.log("deletion failed", err);
+  //       })
+  //   }
   }
 
   const calculateSubTotal = (index, qty, price) => {

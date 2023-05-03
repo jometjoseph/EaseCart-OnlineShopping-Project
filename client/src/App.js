@@ -14,14 +14,13 @@ function App() {
         <MainNav/>
       <ToastContainer/>
       <TokenInterceptor/>
-      <>
+      <div>
           <Outlet/>
-      </>
+      </div>
       <Footer/>
       </div>
     </div>
       
- 
   );
 }
 

@@ -5,6 +5,7 @@ import ProductCreate from "../../components/admin/ProductCreate";
 import { PencilFill, TrashFill } from "react-bootstrap-icons";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { errorAlert } from "../../components/SweetAlert";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -42,25 +43,48 @@ function Products() {
 
   const deleteProduct = async (id) => {
     console.log("product to be del", id);
-    if (!window.confirm("Are you sure to delete this Product?")) {
-      console.log("deleting product");
-      return;
-    } else {
-      try{
-        await axios
-        .delete(`https://localhost:7258/api/Product/${id}`)
-        .then((res) => {
-          console.log("deleted Product successfully", res);
-          toast.success("Product removed from database", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-          getProducts();
-        })
+    const deleteProdAlert = errorAlert("Deleting this product can cause many alterations in database. Do you wish to continue","warning","Product Removed from the Database");
+    deleteProdAlert.then(async (res) => {
+      if(!res){
+        console.log("deleting product");
+        return;
       }
-      catch(err){
-        console.log("deletion failed", err);
+      else {
+        try{
+          await axios
+          .delete(`https://localhost:7258/api/Product/${id}`)
+          .then((res) => {
+            console.log("deleted Product successfully", res);
+            // toast.success("Product removed from database", {
+            //   position: toast.POSITION.TOP_CENTER,
+            // });
+            getProducts();
+          })
+        }
+        catch(err){
+          console.log("deletion failed", err);
+        }
       }
-    }
+    })
+    // if (!window.confirm("Are you sure to delete this Product?")) {
+    //   console.log("deleting product");
+    //   return;
+    // } else {
+    //   try{
+    //     await axios
+    //     .delete(`https://localhost:7258/api/Product/${id}`)
+    //     .then((res) => {
+    //       console.log("deleted Product successfully", res);
+    //       toast.success("Product removed from database", {
+    //         position: toast.POSITION.TOP_CENTER,
+    //       });
+    //       getProducts();
+    //     })
+    //   }
+    //   catch(err){
+    //     console.log("deletion failed", err);
+    //   }
+    // }
   };
 
   const editProduct = async (id) => {

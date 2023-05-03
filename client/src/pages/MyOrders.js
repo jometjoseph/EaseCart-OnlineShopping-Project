@@ -3,12 +3,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { errorAlert } from "../components/SweetAlert";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    getOrders();
+  }, []);
+
+  const getOrders = () =>{
     try {
       axios.get("https://localhost:7258/api/Order/User/Orders").then((res) => {
         console.log("Orders made by user", res.data.result);
@@ -17,28 +22,38 @@ function MyOrders() {
     } catch (err) {
       console.log("Error while fetching", err);
     }
-  }, []);
+  }
 
   const cancelOrder = async (id,item) => {
     // const status = 2;
-    if (!window.confirm("Are you sure to Cancel the purchase of `"+item+"` ?")) {
-      console.log("cancelled the action");
-      return;
-    }
-    else { 
-    try{
-      await axios.put(`https://localhost:7258/api/Order/${id}`)
-      .then(res => {
-        console.log("result of cancelling order",res);
-        toast.success("Order cancelled", {
-          position: toast.POSITION.TOP_CENTER,
-        });
-      })
-    }
-    catch(err){
-      console.log("error while canceling order",err);
-    }
-  }
+    const cancelAlert =  errorAlert("Are you sure to Cancel the purchase of `"+item+"` ?",'warning',"Order cancelled");
+    cancelAlert.then(async (res) => {
+      if (!res){
+        console.log("cancelled the action");
+        return;
+      }
+      else { 
+        try{
+          await axios.put(`https://localhost:7258/api/Order/${id}`)
+          .then(res => {
+            console.log("result of cancelling order",res);
+            toast.success("Order cancelled", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+            getOrders();
+          })
+
+        }
+        catch(err){
+          console.log("error while canceling order",err);
+        }
+      }
+    })
+    // if (!window.confirm("Are you sure to Cancel the purchase of `"+item+"` ?")) {
+    //   console.log("cancelled the action");
+    //   return;
+    // }
+   
   }
 
   const returnProduct = async (id,item) =>{

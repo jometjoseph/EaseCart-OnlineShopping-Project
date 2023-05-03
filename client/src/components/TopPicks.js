@@ -20,9 +20,10 @@ function TopPicks() {
     <Carousel fade className="bg-white">
       <Carousel.Item variant="primary">
         <div className="">
-          <section style={{ backgroundColor: "#eee" }}>
+          <section style={{ backgroundColor: "#ebfafd" }}>
             <div className="text-center container py-5">
-              <h4 className="mt-4 mb-5">
+              <h4 className="mt-2 mb-3">
+              <hr></hr>
                 <strong>Top Picks for you</strong>
               </h4>
               <div className="row">
@@ -85,11 +86,15 @@ function TopPicks() {
       </Carousel.Item>
       <Carousel.Item>
       <div className="">
-          <section style={{ backgroundColor: "#eee" }}>
+          <section style={{ backgroundColor: "#ebfafd" }}>
             <div className="text-center container py-5">
-              <h4 className="mt-4 mb-5">
+              
+              <h4 className="mt-2 mb-3">
+              <hr></hr>
                 <strong>Top Picks for you</strong>
+                
               </h4>
+              
               <div className="row">
                 {topProducts && topProducts.filter((item,index) => index>=4 && index < 8 ).map((item,index) => {
                   return(
@@ -147,9 +152,10 @@ function TopPicks() {
       </Carousel.Item>
       <Carousel.Item>
       <div className="">
-          <section style={{ backgroundColor: "#eee" }}>
+          <section style={{ backgroundColor: "#ebfafd" }}>
             <div className="text-center container py-5">
-              <h4 className="mt-4 mb-5">
+              <h4 className="mt-2 mb-3">
+              <hr></hr>
                 <strong>Top Picks for you</strong>
               </h4>
               <div className="row">

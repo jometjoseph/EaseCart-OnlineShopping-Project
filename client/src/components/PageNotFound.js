@@ -7,8 +7,8 @@ function PageNotFound(){
     return(
         <div className="container d-flex justify-content-center align-items-center flex-column" style={{height: "100vh"}}>
         <div className="pagenotfoundbody">
-        <div class="typing">
-        <h2 class="text-uppercase">⚠️404Error</h2>
+        <div className="typing">
+        <h2 className="text-uppercase">⚠️404Error</h2>
        </div>
         </div>
         <h2 className='text-center'><i>Page Not Found</i></h2>

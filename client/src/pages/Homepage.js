@@ -18,8 +18,8 @@ function Homepage() {
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const navigate = useNavigate();
-  const searchTerm = useSelector(state => state.easeCart.searchKey);
-  console.log("search value in home page",searchTerm);
+  // const searchTerm = useSelector(state => state.easeCart.searchKey);
+  // console.log("search value in home page",searchTerm);
 
   setSecNavbar(true);
   useEffect(() => {
@@ -93,7 +93,7 @@ function Homepage() {
   };
   return (
     < >
-      <MainNav onSearch={handleSearch}/>
+      <MainNav onSearch={handleSearch} setSearchBox={true}/>
       <div className="mt-5">
       <div className="d-flex flex-row flex-wrap justify-content-around bg-light" >
       <SecondNavbar />                                                                {/* SecondNavbar component  */}
@@ -230,15 +230,12 @@ function Homepage() {
                         <div className="d-flex justify-content-between mb-2">
                           <p className="text-muted mb-0">
                             Available:{" "}
-                            <span className="fw-bold">{item.quantity}</span>
+                            
+                            {item.quantity <= 5 && item.quantity >=1 ?  <span className="fw-bold text-danger">only a few stocks left</span> : <></>}
+                            {item.quantity < 1 ?  <span className="fw-bold text-danger">Out of stocks</span> : <></>}
+                            {item.quantity > 5 ?  <span className="fw-bold ">{item.quantity}</span> : <></>}
                           </p>
-                          <div className="ms-auto text-warning">
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                            <i className="fa fa-star"></i>
-                          </div>
+                          
                         </div>
                       </div>
                     </div>
@@ -257,7 +254,6 @@ function Homepage() {
           </MDBContainer>
         </div>
       </div>
-      <Footer/>
     </>
   );
 }
